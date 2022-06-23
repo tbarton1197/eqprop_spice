@@ -1,0 +1,45 @@
+.title testNetlist 
+.SUBCKT neuron in out 
+E1 2 0 in 0 4 
+V1 out 2 0
+F1 in 0 V1 0.25
+X1 in 0 1N4148
+X2 0 in 1N4148
+
+.ENDS
+.SUBCKT 1N4148 1 2 
+
+R1 1 2 5.827E+9 
+D1 1 2 1N4148
+*
+.MODEL 1N4148 D 
++ IS = 4.352E-9 
++ N = 1.906 
++ BV = 110 
++ IBV = 0.0001 
++ RS = 0.6458 
++ CJO = 7.048E-13 
++ VJ = 0.869 
++ M = 0.03 
++ FC = 0.5 
++ TT = 3.48E-9 
+.ENDS
+r_X1_in_00 X1_Nin_0 X1_in_0 16.433511982598603
+r_X1_in_01 X1_Nin_1 X1_in_0 -32.79449438600294
+r_X1_in_10 X1_Nin_0 X1_in_1 15.661396730112985
+r_X1_in_11 X1_Nin_1 X1_in_1 -28.1746305663273
+X1_neuron_0 X1_Nin_0 X2_in_0 neuron
+X1_neuron_1 X1_Nin_1 X2_in_1 neuron
+r_X2_in_00 output_net_0 X2_in_0 -0.036635642788701545
+r_X2_in_01 output_net_1 X2_in_0 -0.5229245383398349
+r_X2_in_10 output_net_0 X2_in_1 -0.04013789852956134
+r_X2_in_11 output_net_1 X2_in_1 -0.887904127851772
+vbias vbin1 0 1
+rb1 X1_Nin_0 vbin1 80000
+rb2 X1_Nin_1 vbin1 17
+vin_0 X1_in_0 0 2
+vin_1 X1_in_1 0 2
+I0 output_net_1 0 -0.006533089182830497
+I1 output_net_0 0 3.2646910622950997e-06
+.op
+.end
